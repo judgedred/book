@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Book</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="wrapper">
+    <div style="margin: 5px;">Add book</div>
+    <form th:action="@{addBook}" th:object="${book}" method="post">
+        <table>
+            <tr>
+                <td><label th:for="*{title}">Title</label></td>
+                <td><input class="form-control form-control-sm" th:field="*{title}" type="text"/></td>
+                <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>
+            </tr>
+            <tr>
+                <td><label th:for="*{isbn}">ISBN</label></td>
+                <td><input class="form-control form-control-sm" th:field="*{isbn}" type="text"/></td>
+                <td th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></td>
+            </tr>
+            <tr>
+                <td><label th:for="*{author}">Author</label></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td th:unless="${#fields.hasErrors('author')}">
+                    <input class="form-control form-control-sm" th:field="*{author.name}" type="text"/>
+                </td>
+                <td th:if="${#fields.hasErrors('author')}">
+                    <input class="form-control form-control-sm" th:field="*{author.name}" type="text" style="background: #f9b3b3"/>
+                </td>
+                <td th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td th:unless="${#fields.hasErrors('author')}">
+                    <input class="form-control form-control-sm" th:field="*{author.surname}" type="text" />
+                </td>
+                <td th:if="${#fields.hasErrors('author')}">
+                    <input class="form-control form-control-sm" th:field="*{author.surname}" type="text" style="background: #f9b3b3"/>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Add" class="btn btn-primary"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

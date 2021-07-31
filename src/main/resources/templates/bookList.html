@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BookList</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div style="margin: 5px;">Books</div>
+<div th:if="${#lists.isEmpty(bookList)}">
+    No records
+</div>
+<div th:unless="${#lists.isEmpty(bookList)}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${bookList}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.author.name + ' ' + book.author.surname}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<button type="button" class="btn btn-link">
+    <a th:href="@{addBookForm}">Add book</a>
+</button>
+</body>
+</html>

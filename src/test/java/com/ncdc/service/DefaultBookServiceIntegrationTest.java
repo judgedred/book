@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class DefaultBookServiceTest {
+class DefaultBookServiceIntegrationTest {
 
     @Autowired
     private BookService bookService;
